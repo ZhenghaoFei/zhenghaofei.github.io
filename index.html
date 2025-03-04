@@ -3,136 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We Are Hiring</title>
+    <title>Zhenghao Fei - Research</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
+        .work-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: #0056b3;
+        .work-item {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
         }
-        p, ul {
-            line-height: 1.6;
-        }
-        .contact-info {
-            background-color: #e9ecef;
-            padding: 10px;
-            margin-top: 20px;
-            border-left: 5px solid #0056b3;
+        .work-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0; /* Placeholder for image */
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-style: italic;
+            color: #888;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>We Are Hiring!</h1>
-        <p>
-            浙江大学杭州国际科创中心-农业机器人团队正在寻找有激情、有才华的研究人员/工程师加入我们的团队！如果您对农业机器人有兴趣，认为自己是一个合适的人选，请查看以下职位描述并联系我们。
-            We are currently looking for a motivated and talented individual to join our team. Please review the job description below and reach out if you think you are a good fit.
-        </p>
-        
-        <h2>Job Description</h2>
-        <h3>实验室简介</h3>
+    <h1>Zhenghao Fei</h1>
+    <p>My research interests include the application of robotic systems and automation to improve efficiency and solve labor-related challenges in agriculture. This involves several aspects such as advanced robot perception in the field, autonomous agricultural vehicles, using imitation learning for dexterous manipulation of plants.</p>
 
-        <p>
-            生物生产机器人实验室，位于浙江大学杭州国际科创中心水博园区，依托生物微纳感知创新工坊，重点研究方向为农业机器人研发、非结构化环境下的感知、农业场景的导航及面向作物的机器人化作业（果实采摘、植物保护、作物维护等）。长期愿景是实现农业生产的工厂化、无人化，减少人参与艰苦重复的农业劳动的同时提高农业生产效率。
-        </p>
-        <h3>岗位一： 博士后</h3>
-        <p>申请条件</p>
-        <ul>
-            <li>近3年内获得博士学位，品学兼优，身心健康，年龄原则上不超过35周岁,全职从事博士后研究工作；</li>
-            <li>要求具有一定的视觉、人工智能、控制、机械或机器人学经验； 具有农业工程、计算机科学、机械、电气、控制与自动化、机器人等相关学科背景者优先；</li>
-            <li>具有扎实的编程基础，熟练掌握C/C++、Python等编程语言；</li>
-            <li>具有相关学科背景和科研经验，从事过交叉学科研究者优先考虑；</li>
-            <li>具有良好的团队合作意识和较强的独立工作能力；</li>
-            <li>具有良好的英语听说读写能力；</li>
-        </ul>
-        <p>待遇及保障条件</p>
-        <ul>
-            <li>根据科研工作能力提供具有竞争力的薪酬具体面议，同时可享受地方政府免税人才补助15万元/年，（应届博士毕业生另可获得杭州市应届生生活补贴10万元）；</li>
-            <li>对获得中国博士后科学基金资助和省级博士后科研项目资助的，杭州市、萧山区分别给予相应配套资助；</li>
-            <li>提供一流的实验与科学研究条件,共享浙江大学顶尖学术生态体系；</li>
-            <li>协助申请杭州市、萧山区人才配套用房, 享受园区保障服务，如食堂、健身房、体育馆等；</li>
-            <li>工作期间表现优秀、业绩突出者，如符合相应要求，可优先推荐申请科创中心“求是科创学者”岗位或技术开发岗位；</li>
-            <li>在站期间，符合条件者可申报科创中心相关系列高级专业技术职务；出站优秀者入职科创中心的可认定副研究员职称，并可获得地方政府80万人才补贴；</li>
-        </ul>
+    <div class="work-container">
+        <div class="work-item">
+            <div class="work-image">Image Placeholder</div>
+            <h3>Strawberry Robotic Operation Interface: An Open-Source Device for Collecting Dexterous Manipulation Data in Robotic Strawberry Cultivation</h3>
+            <p>Linsheng Hou Wenwu Lu Yanan Wang Chen Peng Zhenghao Fei</p>
+            <p>Strawberry cultivation is labor-intensive, particularly for tasks requiring dexterous manipulation, such as harvesting occluded strawberries. Imitation learning has emerged as a promising approach to enable robotic arms to perform such functions with human-like dexterity. However, training precise manipulation policies requires large-scale, high-quality demonstration data, which is often challenging to obtain in unstructured field environments. To address this challenge, we introduce the Strawberry Robotic Operation Interface (SROI)—an open-source device designed for collecting dexterous manipulation data in robotic strawberry cultivation. The SROI consists of a handheld unit with a modular end effector and a stereo camera system, facilitating efficient data collection in real-world agricultural settings. Additionally, we develop a data post-processing pipeline to extract spatial trajectories and gripper states from the collected demonstrations. To further support research in dexterous robotic manipulation, we released an open-source dataset of strawberry-picking demonstrations. By enabling systematic data collection, the SROI contributes to advancing the automation of complex strawberry cultivation tasks and reducing reliance on manual labor.</p>
+        </div>
 
-        <h3>岗位二: 农业机器人工程师</h3>
-        <h4>软件、硬件、算法三个方向任选其一</h4>
+        <div class="work-item">
+            <div class="work-image">Image Placeholder</div>
+            <h3>Learning to Pick: A Visuomotor Policy for Occluded Strawberry Picking</h3>
+            <p>Zhenghao Fei, Wenwu Lu, Linsheng Hou, Chen Peng</p>
+            <p>Strawberries naturally grow in clusters, interwoven with leaves, stems, and other fruits, which frequently leads to occlusion. This inherent growth habit presents a significant challenge for robotic picking, as traditional percept-plan-control systems struggle to reach fruits amid the clutter. Effectively picking an occluded strawberry demands dexterous manipulation to carefully bypass or gently move the surrounding soft objects and precisely access the ideal picking point—located at the stem just above the calyx. To address this challenge, we introduce a strawberry-picking robotic system that learns from human demonstrations. Our system features a 4-DoF SCARA arm paired with a human teleportation interface for efficient data collection and leverages an End Pose Assisted Action Chunking Transformer (ACT) to develop a fine-grained visuomotor picking policy. Experiments under various occlusion scenarios demonstrate that our modified approach significantly outperforms the direct implementation of ACT, underscoring its potential for practical application in occluded strawberry picking.</p>
+        </div>
 
-        <h4>软件方向</h4>
-        <p>
-            主要工作内容为农业机器人的机器人软件系统研发。
-        </p>
-        <p>岗位职责&要求：</p>
-        <ul>
-            <li>负责农业机器人系统软件的构架设计与代码框架的开发。</li>
-            <li>负责功能模块开发及测试并编写文档。</li>
-            <li>参与机器人系统联调并对各个相关接口模块负责。</li>
-            <li>负责在机器人在实际工作环境中的系统调试和部署。</li>
-            <li>熟悉机器人操作系统ROS的使用和基于ROS的开发。</li>
-            <li>熟练使用C++和Python语言。</li>
-            <li>熟练使用Linux 系统。</li>
-            <li>对机器人各个模块（建图、定位、感知、预测、规划、控制）有全局概念的优先。</li>
-        </ul>
+        <div class="work-item">
+            <div class="work-image">Image Placeholder</div>
+            <h3>Learn from Foundation Model: Fruit Detection Model without Manual Annotation</h3>
+            <p>Yanan Wang, Zhenghao Fei, Ruichen Li, Yibin Ying</p>
+            <p>Recent breakthroughs in large foundation models have enabled the possibility of transferring knowledge pre-trained on vast datasets to domains with limited data availability. Agriculture is one of the domains that lacks sufficient data. This study proposes a framework to train effective, domain-specific, small models from foundation models without manual annotation. Our approach begins with SDM (Segmentation-Description-Matching), a stage that leverages two foundation models: SAM2 (Segment Anything in Images and Videos) for segmentation and OpenCLIP (Open Contrastive Language-Image Pretraining) for zero-shot open-vocabulary classification. In the second stage, a novel knowledge distillation mechanism is utilized to distill compact, edge-deployable models from SDM, enhancing both inference speed and perception accuracy. The complete method, termed SDM-D (Segmentation-Description-Matching-Distilling), demonstrates strong performance across various fruit detection tasks object detection, semantic segmentation, and instance segmentation) without manual annotation. It nearly matches the performance of models trained with abundant labels. Notably, SDM-D outperforms open-set detection methods such as Grounding SAM and YOLO-World on all tested fruit detection datasets. Additionally, we introduce MegaFruits, a comprehensive fruit segmentation dataset encompassing over 25,000 images, and all code and datasets are made publicly available at https://github.com/AgRoboticsResearch/SDM-D.git</p>
+        </div>
 
-        <h4>硬件方向</h4>
-        <p>
-            主要工作内容为农业机器人电气及结构硬件研发
-        </p>
-        <p>岗位职责&要求：</p>
-        <ul>
-            <li>负责农业机器人电气系统和机械结构的设计和开发。</li>
-            <li>负责机器人各个部件的选型和测试。</li>
-            <li>负责机器人的组装和调试工作。</li>
-            <li>熟悉机器人的电气系统和机械结构。</li>
-            <li>熟练使用机械及电气相关的设计软件和工具。</li>
-            <li>具备良好的动手能力和问题解决能力。</li>
-        </ul>
+        <div class="work-item">
+            <div class="work-image">Image Placeholder</div>
+            <h3>Enlisting 3D Crop Models and GANs for More Data Efficient and Generalizable Fruit Detection</h3>
+            <p>Zhenghao Fei; Alex Olenskyj; Brian N. Bailey; Mason Earles</p>
+            <p>Training real-world neural network models to achieve high performance and generalizability typically requires a substantial amount of labeled data, spanning a broad range of variation. This data-labeling process can be both labor and cost intensive. To achieve desirable predictive performance, a trained model is typically applied into a domain where the data distribution is similar to the training dataset. However, for many agricultural machine learning problems, training datasets are collected at a specific location, during a specific period in time of the growing season. Since agricultural systems exhibit substantial variability in terms of crop type, cultivar, management, seasonal growth dynamics, lighting condition, sensor type, etc, a model trained from one dataset often does not generalize well across domains. To enable more data efficient and generalizable neural network models in agriculture, we propose a method that generates photorealistic agricultural images from a synthetic 3D crop model domain into real world crop domains. The method uses a semantically constrained GAN (generative adversarial network) to preserve the fruit position and geometry. We observe that a baseline CycleGAN method generates visually realistic target domain images but does not preserve fruit position information while our method maintains fruit positions well. Image generation results in vineyard grape day and night images show the visual outputs of our network are much better compared to a baseline network. Incremental training experiments in vineyard grape detection tasks show that the images generated from our method can significantly speed the domain adaption process, increase performance for a given number of labeled images (i.e. data efficiency), and decrease labeling requirements.</p>
+        </div>
 
-        <h4>算法方向</h4>
-        <p>
-            主要工作内容为农业机器人算法开发/研究
-        </p>
-        <p>岗位职责&要求：</p>
-        <ul>
-            <li>参与实际农业机器人项目，针对落地中的问题提出解决方案和尝试创新性方法。</li>
-            <li>负责在农业机器人感知算法的研发，如物体检测及追踪、姿态估计、语义分割等。</li>
-            <li>参与问题定义、数据收集、模型设计、模型训练迭代到最终落地部署的全套流程。</li>
-            <li>参与农业机器人规划和控制算法的研发。</li>
-            <li>熟悉深度学习框架中的至少一种（如 TensorFlow、PyTorch 等）。</li>
-            <li>熟练使用Python语言和Linux系统。</li>
-            <li>有独立完成深度学习相关项目的经验。</li>
-            <li>熟悉常见的深度学习模型。</li>
-            <li>有良好的文档撰写能力和数据可视化的能力。</li>
-            <li>熟悉轮式或者臂式机器人规划控制方法的优先。</li>
-        </ul>
-
-        <h4>共同职责&要求：</h4>
-        <ul>
-            <li>跟踪前沿领域技术并进行相关技术突破，以及专利申请、论文发表。</li>
-            <li>协助团队进行科研项目文书工作，协助实验室管理。</li>
-            <li>硕士及以上学历（特别优秀的本科生可以破格），所学专业为农业工程、机器人、计算机、控制、机械等相关专业。</li>
-            <li>有机器人比赛经历、机器人实验室的经历及机器人企业工作经验者优先；</li>
-            <li>问题解决和创新能力：具备分析和解决问题的能力，能够提出创新性的方法来解决实际农业机器人项目中的问题。</li>
-            <li>团队协作和沟通能力：能够与团队成员有效地沟通和协作，共同推进项目的进展。</li>
-            <li>硬件和系统知识：对机器人的硬件和系统有一定了解。</li>
-        </ul>
-        
-        <h2>How to Apply</h2>
-        <p>
-            如果感兴趣请投递个人简历、表明研究能力和学术水平的成果和学位论文至费铮豪邮箱：zfei@zju.edu.cn
-        </p>
-    </div>
-</body>
-</html>
+        <div class="work-item">
+            <div class="work-image">Image Placeholder</div>
+            <h3>Optimization-based motion planning for autonomous agricultural vehicles turning in constrained headlands</h3>
+            <p>Chen Peng, Peng Wei, Zhenghao Fei*, Yuankai Zhu, Stavros G. Vougioukas</p>
+            <p>Headland maneuvering is a crucial part of the field operations performed by autonomous agricultural vehicles (AAVs). While motion planning for headland turning in open fields has been extensively studied and integrated into commercial autoguidance systems, the existing methods primarily address scenarios with ample headland space and thus may not work in more constrained headland geometries. Commercial orchards often contain narrow and irregularly shaped headlands, which may include static obstacles, rendering the task of planning a smooth and collision-free turning trajectory difficult. To address this challenge, we propose an optimization-based motion planning algorithm for headland turning under geometrical constraints imposed by headland geometry and obstacles. Our method models the headland and the AAV using convex polytopes as geometric primitives, and calculates optimal and collision-free turning trajectories in two stages. In the first stage, a coarse path is generated using either a classical pattern-based turning method or a directional graph-guided hybrid A* algorithm, depending on the complexity of the headland geometry. The second stage refines this coarse path by feeding it into a numerical optimizer, which considers the vehicle's kinematic, control, and collision-avoidance constraints to produce a feasible and smooth trajectory. We demonstrate the effectiveness of our algorithm by comparing it to the classical pattern-based method in various types of headlands. The results show that our optimization-based planner outperforms the classical planner in generating collision-free turning trajectories inside constrained headland spaces. Additionally, the trajectories generated by our planner respect the kinematic
