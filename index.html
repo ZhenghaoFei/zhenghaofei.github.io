@@ -6,67 +6,80 @@
     <title>Zhenghao Fei - Research</title>
     <style>
         body {
-            font-family: sans-serif;
-            line-height: 1.6;
+            font-family: Arial, sans-serif;
             margin: 20px;
+            line-height: 1.6;
         }
-        .work-item {
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            padding: 15px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .work-image {
-            width: 100%;
-            height: 200px;
-            background-color: #f0f0f0; /* Placeholder for image */
-            margin-bottom: 10px;
+        .research-item {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-style: italic;
-            color: #888;
+            margin-bottom: 30px;
         }
-        .work-title {
-          font-weight: bold;
-          margin-bottom: 5px;
+        .research-item img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+        .research-content {
+            flex: 1;
+        }
+        .research-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .research-authors {
+            font-style: italic;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Zhenghao Fei</h1>
-    <p>My research interests include the application of robotic systems and automation to improve efficiency and solve labor-related challenges in agriculture. This involves several aspects such as advanced robot perception in the field, autonomous agricultural vehicles, using imitation learning for dexterous manipulation of plants.</p>
+    <header>
+        <h1>Zhenghao Fei</h1>
+        <p>My research interests include the application of robotic systems and automation to improve efficiency and solve labor-related challenges in agriculture. This involves several aspects such as advanced robot perception in the field, autonomous agricultural vehicles, using imitation learning for dexterous manipulation of plants.</p>
+    </header>
 
-    <div class="work-item">
-        <div class="work-image">Image Placeholder</div>
-        <div class="work-title">[Strawberry Robotic Operation Interface: An Open-Source Device for Collecting Dexterous Manipulation Data in Robotic Strawberry Cultivation]</div>
-        <p>Linsheng Hou Wenwu Lu Yanan Wang Chen Peng Zhenghao Fei</p>
-        <p>Strawberry cultivation is labor-intensive, particularly for tasks requiring dexterous manipulation, such as harvesting occluded strawberries. Imitation learning has emerged as a promising approach to enable robotic arms to perform such functions with human-like dexterity. However, training precise manipulation policies requires large-scale, high-quality demonstration data, which is often challenging to obtain in unstructured field environments. To address this challenge, we introduce the Strawberry Robotic Operation Interface (SROI)—an open-source device designed for collecting dexterous manipulation data in robotic strawberry cultivation. The SROI consists of a handheld unit with a modular end effector and a stereo camera system, facilitating efficient data collection in real-world agricultural settings. Additionally, we develop a data post-processing pipeline to extract spatial trajectories and gripper states from the collected demonstrations. To further support research in dexterous robotic manipulation, we released an open-source dataset of strawberry-picking demonstrations. By enabling systematic data collection, the SROI contributes to advancing the automation of complex strawberry cultivation tasks and reducing reliance on manual labor.</p>
-    </div>
+    <section>
+        <div class="research-item">
+            <img src="path_to_image_1.jpg" alt="Strawberry Robotic Operation Interface">
+            <div class="research-content">
+                <div class="research-title">Strawberry Robotic Operation Interface: An Open-Source Device for Collecting Dexterous Manipulation Data in Robotic Strawberry Cultivation</div>
+                <div class="research-authors">Linsheng Hou, Wenwu Lu, Yanan Wang, Chen Peng, Zhenghao Fei</div>
+                <p>Strawberry cultivation is labor-intensive, particularly for tasks requiring dexterous manipulation, such as harvesting occluded strawberries. Imitation learning has emerged as a promising approach to enable robotic arms to perform such functions with human-like dexterity. However, training precise manipulation policies requires large-scale, high-quality demonstration data, which is often challenging to obtain in unstructured field environments. To address this challenge, we introduce the Strawberry Robotic Operation Interface (SROI)—an open-source device designed for collecting dexterous manipulation data in robotic strawberry cultivation. The SROI consists of a handheld unit with a modular end effector and a stereo camera system, facilitating efficient data collection in real-world agricultural settings. Additionally, we develop a data post-processing pipeline to extract spatial trajectories and gripper states from the collected demonstrations. To further support research in dexterous robotic manipulation, we released an open-source dataset of strawberry-picking demonstrations. By enabling systematic data collection, the SROI contributes to advancing the automation of complex strawberry cultivation tasks and reducing reliance on manual labor.</p>
+            </div>
+        </div>
 
-    <div class="work-item">
-        <div class="work-image">Image Placeholder</div>
-        <div class="work-title">[Learning to Pick: A Visuomotor Policy for Occluded Strawberry Picking]</div>
-        <p>Zhenghao Fei, Wenwu Lu, Linsheng Hou, Chen Peng</p>
-        <p>Strawberries naturally grow in clusters, interwoven with leaves, stems, and other fruits, which frequently leads to occlusion. This inherent growth habit presents a significant challenge for robotic picking, as traditional percept-plan-control systems struggle to reach fruits amid the clutter. Effectively picking an occluded strawberry demands dexterous manipulation to carefully bypass or gently move the surrounding soft objects and precisely access the ideal picking point—located at the stem just above the calyx. To address this challenge, we introduce a strawberry-picking robotic system that learns from human demonstrations. Our system features a 4-DoF SCARA arm paired with a human teleportation interface for efficient data collection and leverages an End Pose Assisted Action Chunking Transformer (ACT) to develop a fine-grained visuomotor picking policy. Experiments under various occlusion scenarios demonstrate that our modified approach significantly outperforms the direct implementation of ACT, underscoring its potential for practical application in occluded strawberry picking.</p>
-    </div>
+        <div class="research-item">
+            <img src="path_to_image_2.jpg" alt="Learning to Pick">
+            <div class="research-content">
+                <div class="research-title">Learning to Pick: A Visuomotor Policy for Occluded Strawberry Picking</div>
+                <div class="research-authors">Zhenghao Fei, Wenwu Lu, Linsheng Hou, Chen Peng</div>
+                <p>Strawberries naturally grow in clusters, interwoven with leaves, stems, and other fruits, which frequently leads to occlusion. This inherent growth habit presents a significant challenge for robotic picking, as traditional percept-plan-control systems struggle to reach fruits amid the clutter. Effectively picking an occluded strawberry demands dexterous manipulation to carefully bypass or gently move the surrounding soft objects and precisely access the ideal picking point—located at the stem just above the calyx. To address this challenge, we introduce a strawberry-picking robotic system that learns from human demonstrations. Our system features a 4-DoF SCARA arm paired with a human teleportation interface for efficient data collection and leverages an End Pose Assisted Action Chunking Transformer (ACT) to develop a fine-grained visuomotor picking policy. Experiments under various occlusion scenarios demonstrate that our modified approach significantly outperforms the direct implementation of ACT, underscoring its potential for practical application in occluded strawberry picking.</p>
+            </div>
+        </div>
 
-    <div class="work-item">
-        <div class="work-image">Image Placeholder</div>
-        <div class="work-title">[Learn from Foundation Model: Fruit Detection Model without Manual Annotation]</div>
-        <p>Yanan Wang, Zhenghao Fei, Ruichen Li, Yibin Ying</p>
-        <p>Recent breakthroughs in large foundation models have enabled the possibility of transferring knowledge pre-trained on vast datasets to domains with limited data availability. Agriculture is one of the domains that lacks sufficient data. This study proposes a framework to train effective, domain-specific, small models from foundation models without manual annotation. Our approach begins with SDM (Segmentation-Description-Matching), a stage that leverages two foundation models: SAM2 (Segment Anything in Images and Videos) for segmentation and OpenCLIP (Open Contrastive Language-Image Pretraining) for zero-shot open-vocabulary classification. In the second stage, a novel knowledge distillation mechanism is utilized to distill compact, edge-deployable models from SDM, enhancing both inference speed and perception accuracy. The complete method, termed SDM-D (Segmentation-Description-Matching-Distilling), demonstrates strong performance across various fruit detection tasks object detection, semantic segmentation, and instance segmentation) without manual annotation. It nearly matches the performance of models trained with abundant labels. Notably, SDM-D outperforms open-set detection methods such as Grounding SAM and YOLO-World on all tested fruit detection datasets. Additionally, we introduce MegaFruits, a comprehensive fruit segmentation dataset encompassing over 25,000 images, and all code and datasets are made publicly available at https://github.com/AgRoboticsResearch/SDM-D.git</p>
-    </div>
+        <div class="research-item">
+            <img src="path_to_image_3.jpg" alt="Learn from Foundation Model">
+            <div class="research-content">
+                <div class="research-title">Learn from Foundation Model: Fruit Detection Model without Manual Annotation</div>
+                <div class="research-authors">Yanan Wang, Zhenghao Fei, Ruichen Li, Yibin Ying</div>
+                <p>Recent breakthroughs in large foundation models have enabled the possibility of transferring knowledge pre-trained on vast datasets to domains with limited data availability. Agriculture is one of the domains that lacks sufficient data. This study proposes a framework to train effective, domain-specific, small models from foundation models without manual annotation. Our approach begins with SDM (Segmentation-Description-Matching), a stage that leverages two foundation models: SAM2 (Segment Anything in Images and Videos) for segmentation and OpenCLIP (Open Contrastive Language-Image Pretraining) for zero-shot open-vocabulary classification. In the second stage, a novel knowledge distillation mechanism is utilized to distill compact, edge-deployable models from SDM, enhancing both inference speed and perception accuracy. The complete method, termed SDM-D (Segmentation-Description-Matching-Distilling), demonstrates strong performance across various fruit detection tasks (object detection, semantic segmentation, and instance segmentation) without manual annotation. It nearly matches the performance of models trained with abundant labels. Notably, SDM-D outperforms open-set detection methods such as Grounding SAM and YOLO-World on all tested fruit detection datasets. Additionally, we introduce MegaFruits, a comprehensive fruit segmentation dataset encompassing over 25,000 images, and all code and datasets are made publicly available at <a href="https://github.com/AgRoboticsResearch/SDM-D.git">https://github.com/AgRoboticsResearch/SDM-D.git</a>.</p>
+            </div>
+        </div>
 
-    <div class="work-item">
-        <div class="work-image">Image Placeholder</div>
-        <div class="work-title">[Enlisting 3D Crop Models and GANs for More Data Efficient and Generalizable Fruit Detection]</div>
-        <p>Zhenghao Fei; Alex Olenskyj; Brian N. Bailey; Mason Earles</p>
-        <p>Training real-world neural network models to achieve high performance and generalizability typically requires a substantial amount of labeled data, spanning a broad range of variation. This data-labeling process can be both labor and cost intensive. To achieve desirable predictive performance, a trained model is typically applied into a domain where the data distribution is similar to the training dataset. However, for many agricultural machine learning problems, training datasets are collected at a specific location, during a specific period in time of the growing season. Since agricultural systems exhibit substantial variability in terms of crop type, cultivar, management, seasonal growth dynamics, lighting condition, sensor type, etc, a model trained from one dataset often does not generalize well across domains. To enable more data efficient and generalizable neural network models in agriculture, we propose a method that generates photorealistic agricultural images from a synthetic 3D crop model domain into real world crop domains. The method uses a semantically constrained GAN (generative adversarial network) to preserve the fruit position and geometry. We observe that a baseline CycleGAN method generates visually realistic target domain images but does not preserve fruit position information while our method maintains fruit positions well. Image generation results in vineyard grape day and night images show the visual outputs of our network are much better compared to a baseline network. Incremental training experiments in vineyard grape detection tasks show that the images generated from our method can significantly speed the domain adaption process, increase performance for a given number of labeled images (i.e. data efficiency), and decrease labeling requirements.</p>
-    </div>
+        <div class="research-item">
+            <img src="path_to_image_4.jpg" alt="Enlisting 3D Crop Models and GANs">
+            <div class="research-content">
+                <div class="research-title">Enlisting 3D Crop Models and GANs for More Data Efficient and Generalizable Fruit Detection</div>
+                <div class="research-authors">Zhenghao Fei, Alex Olenskyj, Brian N. Bailey, Mason Earles</div>
+                <p>Training real-world neural network models to achieve high performance and generalizability typically requires a substantial amount of labeled data, spanning a broad range of variation. This data-labeling process can be both labor and cost intensive. To achieve desirable predictive performance, a trained model is typically applied into a domain where the data distribution is similar to the training dataset. However, for many agricultural machine learning problems, training datasets are collected at a specific location, during a specific period in the growing season. Since agricultural systems exhibit substantial variability in terms of crop type, cultivar, management, seasonal growth dynamics, lighting condition, sensor type, etc, a model trained from one dataset often does not generalize well across domains. To enable more data efficient and generalizable neural network models in agriculture, we propose a method that generates photorealistic agricultural images from a synthetic 3D crop model domain into real world crop domains. The method uses a semantically constrained GAN (generative adversarial network) to preserve the fruit position and geometry. We observe that a baseline CycleGAN method generates visually realistic target domain images but does not preserve fruit position information while our method maintains fruit positions well. Image generation results in vineyard grape day and night images show the visual outputs of our network are much better compared to a baseline network. Incremental training experiments in vineyard grape detection tasks show that the images generated from our method can significantly speed the domain adaption process, increase performance for a given number of labeled images (i.e. data efficiency), and decrease labeling requirements.</p>
+            </div>
+        </div>
 
-    <div class="work-item">
-        <div class="work-image">Image Placeholder</div>
-        <div class="work-title">[Optimization-based motion planning for autonomous agricultural vehicles turning in constrained headlands]</div>
-        <p>Chen Peng, Peng Wei, Zhenghao Fei*, Yuankai Zhu, Stavros G. Vougioukas</p>
-        <p>Headland maneuvering is a crucial part of the field operations performed by autonomous agricultural vehicles (AAVs). While motion planning for headland turning in open fields has been extensively studied and integrated into commercial autoguidance systems, the existing methods primarily address scenarios with ample headland space and thus may not work in more constrained headland geometries. Commercial orchards often contain narrow and irregularly shaped headlands, which may include static obstacles, rendering the task of planning a smooth and collision-free turning trajectory difficult. To address this challenge, we propose an optimization-based motion planning algorithm for headland turning under geometrical constraints imposed by headland geometry and obstacles. Our method models the headland and the AAV using convex polytopes as geometric primitives, and calculates optimal and collision-free turning trajectories in two stages. In the first stage, a coarse path is generated using either a classical pattern-based turning method or a directional graph-guided hybrid A* algorithm, depending on the complexity of the headland geometry. The second stage refines this coarse path by feeding it into a numerical optimizer, which considers the vehicle's kinematic, control, and collision-avoidance constraints to produce a feasible and smooth trajectory. We demonstrate the effectiveness of our algorithm by comparing it to the classical pattern-based method
+        <div class="research-item">
+            <img src="path_to_image_5.jpg" alt="Optimization-based Motion Planning">
+            <div class="research-content">
+                <div class="research-title">Optimization-based motion planning for autonomous agricultural vehicles turning in constrained headlands</div>
+                <div class="research-authors">Chen Peng, Peng Wei, Zhenghao Fei*, Yuankai Zhu, Stavros G. Vougioukas</div>
+                <p>Headland maneuvering is a crucial part of the field operations performed by autonomous agricultural vehicles (AAVs). While motion planning for headland turning in open fields has been extensively studied and integrated into commercial autoguidance systems, the existing methods primarily address scenarios with ample headland space
