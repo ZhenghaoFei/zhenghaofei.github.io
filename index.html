@@ -32,15 +32,86 @@
             font-style: italic;
             margin-bottom: 10px;
         }
+        .cv-section {
+            margin-bottom: 30px;
+        }
+        .cv-section h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .cv-item {
+            margin-bottom: 15px;
+        }
+        .cv-item h3 {
+            margin-bottom: 5px;
+            margin-top: 0;
+        }
+        .cv-item p {
+            margin: 0;
+            padding-left: 15px;
+        }
+        .social-links {
+            margin-bottom: 20px;
+        }
+        .social-links a {
+            text-decoration: none;
+            margin-right: 15px;
+            color: #0366d6;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Zhenghao Fei</h1>
         <p>My research interests focus on leveraging advanced robotics and automation technologies to enhance agricultural productivity and address critical labor challenges. Including innovative robot perception techniques for complex field environments, autonomous navigation of agricultural machinery, and utilizing imitation learning strategies to achieve dexterous, plant-level manipulation tasks.</p>
+        
+        <div class="social-links">
+            <a href="https://scholar.google.com/citations?user=RVJdxdsAAAAJ&hl=en" target="_blank">Google Scholar</a>
+        </div>
     </header>
 
+    <section class="cv-section">
+        <h2>Education</h2>
+        <div class="cv-item">
+            <h3>University of California, Davis, United States</h3>
+            <p>Ph.D. | Biological System Engineering</p>
+        </div>
+        <div class="cv-item">
+            <h3>Zhejiang University, China</h3>
+            <p>Bachelor of Engineering | Biological System Engineering</p>
+            <p>Bachelor of Management | Innovation and Entrepreneurship Management</p>
+        </div>
+    </section>
+
+    <section class="cv-section">
+        <h2>Experience</h2>
+        <div class="cv-item">
+            <h3>Researcher (July 2023 - Present)</h3>
+            <p>ZJU-Hangzhou Global Scientific and Technological Innovation Center, Zhejiang University, Hangzhou, China</p>
+            <p>• Research focus on agricultural robotics, particularly perception, manipulation, and navigation algorithms for fruit harvesting robot and livestock inspection robot</p>
+            <p>• Co-PI of the Biological Robotics Lab</p>
+        </div>
+        <div class="cv-item">
+            <h3>Postdoctoral Researcher (Sept 2020 - July 2021)</h3>
+            <p>University of California, Davis, CA, United States</p>
+            <p>• Data-efficient generalizable fruit detection, multi-view occluded fruit detection</p>
+            <p>• Electronic system and operation system for a field fruit sensing device</p>
+        </div>
+    </section>
+
+    <section class="cv-section">
+        <h2>Research Interests</h2>
+        <ul>
+            <li>Robotics and artificial intelligence in agriculture</li>
+            <li>Robot perception, localization, and autonomous navigation in field environment</li>
+            <li>Robotic fruit harvesting and dexterous manipulation</li>
+            <li>Large foundation models in agriculture</li>
+        </ul>
+    </section>
+
     <section>
+        <h2>Research Projects</h2>
         <div class="research-item">
             <img src="./src/sroi.jpeg" alt="Strawberry Robotic Operation Interface">
             <div class="research-content">
