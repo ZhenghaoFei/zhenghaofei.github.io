@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+{% if page.external_url %}
+<script>window.location.replace("{{ page.external_url }}");</script>
+<p class="muted">Redirecting to <a href="{{ page.external_url }}">{{ page.title }}</a>…</p>
+{% else %}
+<p><a href="{{ '/' | relative_url }}">&larr; Home</a></p>
+
+<h1>{{ page.title }}</h1>
+<p class="muted">{{ page.date | date: "%B %-d, %Y" }}</p>
+
+{{ content }}
+
+<hr style="border:none;border-top:1px solid #e5e5e5;margin:3rem 0 1rem 0;">
+<p class="muted"><a href="{{ '/' | relative_url }}">&larr; Back to home</a></p>
+{% endif %}

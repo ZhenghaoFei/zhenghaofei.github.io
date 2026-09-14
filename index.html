@@ -1,197 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zhenghao Fei - Research</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
-        }
-        .research-item {
-            display: flex;
-            margin-bottom: 30px;
-        }
-        .research-item img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            margin-right: 20px;
-            border-radius: 10px;
-        }
-        .research-content {
-            flex: 1;
-        }
-        .research-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .research-authors {
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-        .cv-section {
-            margin-bottom: 25px;
-        }
-        .cv-section h2 {
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-            margin-bottom: 12px;
-            font-size: 1.3em;
-        }
-        .cv-item {
-            margin-bottom: 12px;
-        }
-        .cv-item h3 {
-            margin-bottom: 3px;
-            margin-top: 0;
-            font-size: 1.1em;
-        }
-        .cv-item p {
-            margin: 0;
-            padding-left: 15px;
-            font-size: 0.9em;
-        }
-        .cv-section ul {
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-        .cv-section ul li {
-            margin-bottom: 3px;
-        }
-        .social-links {
-            margin-bottom: 20px;
-        }
-        .social-links a {
-            text-decoration: none;
-            margin-right: 15px;
-            color: #0366d6;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Zhenghao Fei</h1>
-        <p>My research interests focus on leveraging automation technologies to enhance agricultural productivity and address critical labor challenges. Including innovative perception techniques for complex field environments, autonomous navigation of agricultural machinery, and utilizing imitation learning strategies to achieve dexterous, plant-level manipulation tasks.</p>
-        
-        <div class="social-links">
-            <a href="https://scholar.google.com/citations?user=RVJdxdsAAAAJ&hl=en" target="_blank">Google Scholar</a>
-        </div>
-    </header>
+---
+layout: default
+title:
+---
 
-    <section class="cv-section">
-        <h2>Education</h2>
-        <div class="cv-item">
-            <h3>University of California, Davis, United States</h3>
-            <p>Ph.D. | Biological System Engineering</p>
-        </div>
-        <div class="cv-item">
-            <h3>Zhejiang University, China</h3>
-            <p>Bachelor of Engineering | Biological System Engineering</p>
-            <p>Bachelor of Management | Innovation and Entrepreneurship Management</p>
-        </div>
-    </section>
+<h1>Zhenghao Fei</h1>
+<p class="subtitle">Researcher in agricultural robotics and automation.</p>
 
-    <section class="cv-section">
-        <h2>Experience</h2>
-        <div class="cv-item">
-            <h3>Researcher (July 2023 - Present)</h3>
-            <p>ZJU-Hangzhou Global Scientific and Technological Innovation Center, Zhejiang University, Hangzhou, China</p>
-            <p>• Research focus on agricultural automation, particularly perception, manipulation, and navigation algorithms for fruit harvesting</p>
-        </div>
-        <div class="cv-item">
-            <h3>Postdoctoral Researcher (Sept 2020 - July 2021)</h3>
-            <p>University of California, Davis, CA, United States</p>
-            <p>• Data-efficient generalizable fruit detection, multi-view occluded fruit detection</p>
-            <p>• Electronic system and operation system for a field fruit sensing device</p>
-        </div>
-    </section>
+<p>My research focuses on leveraging automation technologies to enhance agricultural productivity and address critical labor challenges — including perception techniques for complex field environments, autonomous navigation of agricultural machinery, and imitation learning for dexterous, plant-level manipulation.</p>
 
-<!--     <section class="cv-section">
-        <h2>Research Interests</h2>
-        <ul>
-            <li>Robotics and artificial intelligence in agriculture</li>
-            <li>Robot perception, localization, and autonomous navigation in field environment</li>
-            <li>Robotic fruit harvesting and dexterous manipulation</li>
-            <li>Large foundation models in agriculture</li>
-        </ul>
-    </section> -->
+<p class="links">
+    <a href="https://scholar.google.com/citations?user=RVJdxdsAAAAJ&hl=en">Google Scholar</a>
+    <a href="https://github.com/zhenghaofei">GitHub</a>
+    <a href="https://huggingface.co/zfff">Hugging Face</a>
+</p>
 
-    <section>
-        <h2>Research Projects</h2>
-        <div class="research-item">
-            <img src="./src/sroi.jpeg" alt="Strawberry Robotic Operation Interface">
-            <div class="research-content">
-                <div class="research-title">Strawberry Robotic Operation Interface: An Open-Source Device for Collecting Dexterous Manipulation Data in Robotic Strawberry Cultivation</div>
-                <div class="research-authors">Linsheng Hou, Wenwu Lu, Yanan Wang, Chen Peng, Zhenghao Fei</div>
-                <p>Strawberry cultivation is labor-intensive, particularly for tasks requiring dexterous manipulation, such as harvesting occluded strawberries. Imitation learning has emerged as a promising approach to enable robotic arms to perform such functions with human-like dexterity. However, training precise manipulation policies requires large-scale, high-quality demonstration data, which is often challenging to obtain in unstructured field environments. To address this challenge, we introduce the Strawberry Robotic Operation Interface (SROI)—an open-source device designed for collecting dexterous manipulation data in robotic strawberry cultivation. The SROI consists of a handheld unit with a modular end effector and a stereo camera system, facilitating efficient data collection in real-world agricultural settings. Additionally, we develop a data post-processing pipeline to extract spatial trajectories and gripper states from the collected demonstrations. To further support research in dexterous robotic manipulation, we released an open-source dataset of strawberry-picking demonstrations. By enabling systematic data collection, the SROI contributes to advancing the automation of complex strawberry cultivation tasks and reducing reliance on manual labor.</p>
-            </div>
-        </div>
+<h2>Education</h2>
+<div class="item">
+    <div class="role">University of California, Davis</div>
+    <div class="where">Ph.D., Biological Systems Engineering</div>
+</div>
+<div class="item">
+    <div class="role">Zhejiang University</div>
+    <div class="where">B.Eng., Biological Systems Engineering</div>
+    <div class="where">B.Mgmt., Innovation and Entrepreneurship Management</div>
+</div>
 
-        <div class="research-item">
-            <img src="./src/learntopick.jpeg" alt="Learning to Pick">
-            <div class="research-content">
-                <div class="research-title">Learning to Pick: A Visuomotor Policy for Occluded Strawberry Picking</div>
-                <div class="research-authors">Zhenghao Fei, Wenwu Lu, Linsheng Hou, Chen Peng</div>
-                <p>Strawberries naturally grow in clusters, interwoven with leaves, stems, and other fruits, which frequently leads to occlusion. This inherent growth habit presents a significant challenge for robotic picking, as traditional percept-plan-control systems struggle to reach fruits amid the clutter. Effectively picking an occluded strawberry demands dexterous manipulation to carefully bypass or gently move the surrounding soft objects and precisely access the ideal picking point—located at the stem just above the calyx. To address this challenge, we introduce a strawberry-picking robotic system that learns from human demonstrations. Our system features a 4-DoF SCARA arm paired with a human teleportation interface for efficient data collection and leverages an End Pose Assisted Action Chunking Transformer (ACT) to develop a fine-grained visuomotor picking policy. Experiments under various occlusion scenarios demonstrate that our modified approach significantly outperforms the direct implementation of ACT, underscoring its potential for practical application in occluded strawberry picking.</p>
-            </div>
-        </div>
+<h2>Experience</h2>
+<div class="item">
+    <div class="role">Researcher <span class="when">· 2023 – present</span></div>
+    <div class="where">ZJU-Hangzhou Global Scientific and Technological Innovation Center, Zhejiang University</div>
+</div>
+<div class="item">
+    <div class="role">Postdoctoral Researcher <span class="when">· 2020 – 2021</span></div>
+    <div class="where">University of California, Davis</div>
+</div>
 
-        <div class="research-item">
-            <img src="./src/sdm.jpeg" alt="Learn from Foundation Model">
-            <div class="research-content">
-                <div class="research-title">Learn from Foundation Model: Fruit Detection Model without Manual Annotation</div>
-                <div class="research-authors">Yanan Wang, Zhenghao Fei, Ruichen Li, Yibin Ying</div>
-                <p>Recent breakthroughs in large foundation models have enabled the possibility of transferring knowledge pre-trained on vast datasets to domains with limited data availability. Agriculture is one of the domains that lacks sufficient data. This study proposes a framework to train effective, domain-specific, small models from foundation models without manual annotation. Our approach begins with SDM (Segmentation-Description-Matching), a stage that leverages two foundation models: SAM2 (Segment Anything in Images and Videos) for segmentation and OpenCLIP (Open Contrastive Language-Image Pretraining) for zero-shot open-vocabulary classification. In the second stage, a novel knowledge distillation mechanism is utilized to distill compact, edge-deployable models from SDM, enhancing both inference speed and perception accuracy. The complete method, termed SDM-D (Segmentation-Description-Matching-Distilling), demonstrates strong performance across various fruit detection tasks (object detection, semantic segmentation, and instance segmentation) without manual annotation. It nearly matches the performance of models trained with abundant labels. Notably, SDM-D outperforms open-set detection methods such as Grounding SAM and YOLO-World on all tested fruit detection datasets. Additionally, we introduce MegaFruits, a comprehensive fruit segmentation dataset encompassing over 25,000 images, and all code and datasets are made publicly available at <a href="https://github.com/AgRoboticsResearch/SDM-D.git">https://github.com/AgRoboticsResearch/SDM-D.git</a>.</p>
-            </div>
-        </div>
+<h2>Blog</h2>
+{% for post in site.posts %}
+<div class="list-row">
+    {% if post.external_url %}
+    <a href="{{ post.external_url }}">{{ post.title }} ↗</a>
+    {% else %}
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% endif %}
+    <span class="date">{{ post.date | date: "%b %Y" }}</span>
+</div>
+{% endfor %}
 
-        <div class="research-item">
-            <img src="./src/cropgan.jpeg" alt="Enlisting 3D Crop Models and GANs">
-            <div class="research-content">
-                <div class="research-title">Enlisting 3D Crop Models and GANs for More Data Efficient and Generalizable Fruit Detection</div>
-                <div class="research-authors">Zhenghao Fei, Alex Olenskyj, Brian N. Bailey, Mason Earles</div>
-                <p>Training real-world neural network models to achieve high performance and generalizability typically requires a substantial amount of labeled data, spanning a broad range of variation. This data-labeling process can be both labor and cost intensive. To achieve desirable predictive performance, a trained model is typically applied into a domain where the data distribution is similar to the training dataset. However, for many agricultural machine learning problems, training datasets are collected at a specific location, during a specific period in the growing season. Since agricultural systems exhibit substantial variability in terms of crop type, cultivar, management, seasonal growth dynamics, lighting condition, sensor type, etc, a model trained from one dataset often does not generalize well across domains. To enable more data efficient and generalizable neural network models in agriculture, we propose a method that generates photorealistic agricultural images from a synthetic 3D crop model domain into real world crop domains. The method uses a semantically constrained GAN (generative adversarial network) to preserve the fruit position and geometry. We observe that a baseline CycleGAN method generates visually realistic target domain images but does not preserve fruit position information while our method maintains fruit positions well. Image generation results in vineyard grape day and night images show the visual outputs of our network are much better compared to a baseline network. Incremental training experiments in vineyard grape detection tasks show that the images generated from our method can significantly speed the domain adaption process, increase performance for a given number of labeled images (i.e. data efficiency), and decrease labeling requirements.All code and datasets are made publicly available at <a href="https://github.com/plant-ai-biophysics-lab/CropGAN">https://github.com/plant-ai-biophysics-lab/CropGAN</a>.</p>
-            </div>
-        </div>
-
-        <div class="research-item">
-            <img src="./src/headland.jpg" alt="Optimization-based Motion Planning">
-            <div class="research-content">
-                <div class="research-title">Optimization-based motion planning for autonomous agricultural vehicles turning in constrained headlands</div>
-                <div class="research-authors">Chen Peng, Peng Wei, Zhenghao Fei*, Yuankai Zhu, Stavros G. Vougioukas</div>
-                <p>Headland maneuvering is a crucial part of the field operations performed by autonomous agricultural vehicles (AAVs). While motion planning for headland turning in open fields has been extensively studied and integrated into commercial autoguidance systems, the existing methods primarily address scenarios with ample headland space                 and thus may not work in more constrained headland geometries. Commercial orchards often contain narrow and irregularly shaped headlands, which may include static obstacles, rendering the task of planning a smooth and collision-free turning trajectory difficult. To address this challenge, we propose an optimization-based motion planning algorithm for headland turning under geometrical constraints imposed by headland geometry and obstacles. Our method models the headland and the AAV using convex polytopes as geometric primitives, and calculates optimal and collision-free turning trajectories in two stages. In the first stage, a coarse path is generated using either a classical pattern-based turning method or a directional graph-guided hybrid A* algorithm, depending on the complexity of the headland geometry. The second stage refines this coarse path by feeding it into a numerical optimizer, which considers the vehicle's kinematic, control, and collision-avoidance constraints to produce a feasible and smooth trajectory. We demonstrate the effectiveness of our algorithm by comparing it to the classical pattern-based method in various types of headlands. The results show that our optimization-based planner outperforms the classical planner in generating collision-free turning trajectories inside constrained headland spaces. Additionally, the trajectories generated by our planner respect the kinematic and control limits of the vehicle and, hence, are easier for a path-tracking controller to follow. In conclusion, our proposed approach successfully addresses complex motion planning problems in constrained headlands, making it a valuable contribution to the autonomous operation of AAVs, particularly in real-world orchard environments.</p>
-            </div>
-        </div>
-
-        <div class="research-item">
-            <img src="./src/row_templare.jpeg" alt="Row-sensing Templates">
-            <div class="research-content">
-                <div class="research-title">Row-sensing templates: A generic 3D sensor-based approach to robot localization with respect to orchard row centerlines</div>
-                <div class="research-authors">Zhenghao Fei, Stavros G. Vougioukas</div>
-                <p>Accurate robot localization relative to orchard row centerlines is essential for autonomous guidance where satellite signals are often obstructed by foliage. Existing sensor-based approaches rely on various features extracted from images and point clouds. However, any selected features are not available consistently, because the visual and geometrical characteristics of orchard rows change drastically when tree types, growth stages, canopy management practices, seasons, and weather conditions change. In this study, we introduce a novel localization method that does not rely on features; instead, it relies on the concept of a row-sensing template, which is the expected observation of a 3D sensor traveling in an orchard row, when the sensor is anywhere on the centerline and perfectly aligned with it. First, the template is built using a few measurements, provided that the sensor's true pose with respect to the centerline is available. Then, during navigation, the best pose estimate (and its confidence) is estimated by maximizing the match between the template and the sensed point cloud using particle-filtering. The method can adapt to various orchards and conditions by rebuilding the template. Experiments were performed in a vineyard, and in an orchard in different seasons. Results showed that the lateral mean absolute error (MAE) was less than 3.6% of the row width, and the heading MAE was less than 1.72°. Localization was robust, as errors did not increase when less than 75% of measurement points were missing. The results indicate that template-based localization can provide a generic approach for accurate and robust localization in real-world orchards.</p>
-            </div>
-        </div>
-
-        <div class="research-item">
-            <img src="./src/platform.jpeg" alt="A Robotic Orchard Platform">
-            <div class="research-content">
-                <div class="research-title">A robotic orchard platform increases harvest throughput by controlling worker vertical positioning and platform speed</div>
-                <div class="research-authors">Zhenghao Fei, Stavros G. Vougioukas</div>
-                <p>Orchard harvest-aid platforms are used in high-density orchards with SNAP (Simple, Narrow, Accessible, and Productive) tree architectures. In these orchards, trees are planted and trained into fruiting walls, and workers harvest the fruit while standing on the platform. A worker in the front – the “driver” - is responsible for controlling the platform speed and keeping it centered in the row while they pick fruit. The use of harvest-aid platforms improves the picking efficiency, safety, and ergonomics of the workers compared to ladder-based picking. However, the non-uniform fruit distribution in tree canopies results in an incoming fruit rate (demand for labor) that varies spatially and temporally and is not necessarily matched to the workers' picking positions and harvest speeds (supply of labor). This mismatch lowers the overall harvest efficiency. A previous study improved upon this mismatch by introducing an independent actuated lift for each worker and dynamically adjusting each worker's picking height based on the estimated incoming fruit distribution and the workers’ harvesting rates. The horizontal moving speed of the platform was not controlled. This work presents an integrated system that optimizes the platform's travel speed and lift heights in real-time to increase the platform’s harvest throughput. Simulation experiments using digitized fruit distributions investigated the algorithm's potential gain under different settings. Field experiments were performed in a commercial apple orchard in Lodi, CA, with Fuji apples on V-trellised trees using a “robotized” platform and two workers. Two modes were implemented in the experiments: the “conventional” mode, which represents current practice, where workers' heights are fixed, and the platform speed is adjusted by the front worker, and the “co-robotic” mode, where the optimizing algorithm dynamically adjusts worker's heights and platform speed. A total of 3,227 kg of apples were harvested during the experiment. The overall throughput of the “co-robotic” mode was 261.8 kg/h if apple stems were clipped and 501.1 kg/h if apple stems were not clipped. The corresponding overall throughputs of the “conventional” mode were 235.3 kg/h and 397.7 kg/h. The results showed that the “co-robotic” mode improved the harvesting throughput by 11% (clipping) and 25% (without clipping). The code for the models, optimization system, and simulation has been made available as open-source on <a href="https://github.com/AgRoboticsResearch/corobotic-platform">https://github.com/AgRoboticsResearch/corobotic-platform</a>.</p>
-            </div>
-        </div>
-
-        <div class="research-item">
-            <img src="./src/bag.jpeg" alt="Estimation of Worker Fruit-Picking Rates">
-            <div class="research-content">
-                <div class="research-title">Estimation of worker fruit-picking rates with an instrumented picking bag</div>
-                <div class="research-authors">Zhenghao Fei, John Shepard, Stavros G. Vougioukas</div>
-                <p>Estimating and recording a worker’s picking rate during tree fruit harvesting can provide useful information for better workforce management, orchard platform crew management, and generation of yield maps (in combination with position). A commercial picking bag was instrumented to estimate harvested fruit weight in real-time. All electronics were placed inside an enclosure that was placed between the bag and its shoulder straps, without hindering picking motions. The electronics included two load cells to measure the forces exerted on the straps by the bag and fruits, an Arduino microcontroller, signal conditioning circuits, data storage, wireless communication components, and inertial sensors. Software was developed for data acquisition, filtering, transmission, and storage. Two calibration models were developed to estimate fruit weight. One model (model 2) used inertial sensor data to compensate for the picking bag’s angle with respect to gravity direction, while the other model (model 1) did not. Dynamic calibration experiments were performed over the entire weight range of the bag (0 to 20 kg) with reference objects of known weight (baseballs and fresh apples). The weight was divided into three ranges: light load (<8 kg), medium load (8 to 13 kg), and heavy load (>13 kg). Results showed that model 1 performed slightly better in the light load range, but model 2 was superior in the medium and heavy load ranges, presumably due to bag angle compensation. The best root mean squared error over the entire range was achieved by model 2 and was 0.36 kg (1.8% of bag capacity). In an application case study, two bags were used by workers harvesting from a platform in a commercial apple orchard. From the data, the pickers’ harvesting speeds were estimated, and the fruit yield distribution was calculated for one side of a tree row.</p>
-            </div>
-        </div>
-    </section>
-</body>
-</html>
+<h2>Research</h2>
+<div class="list-row">
+    <a href="https://agroboticsresearch.github.io/sroi_v2/">SROI V2: Redesigned UMI-Style Handheld Strawberry Robotics Operation Data-Acquisition Device and Robot End-Effector</a>
+    <span class="date">2026</span>
+</div>
+<div class="list-row">
+    <a href="https://agroboticsresearch.github.io/GEAR-Seg/">GEAR-Seg: Grounded Explainable Agent for Reasoning Segmentation</a>
+    <span class="date">2026</span>
+</div>
+<div class="list-row">
+    <a href="https://arxiv.org/abs/2509.14530">Learning to Pick: A Visuomotor Policy for Clustered Strawberry Picking</a>
+    <span class="date">2025</span>
+</div>
+<div class="list-row">
+    <span><a href="https://agroboticsresearch.github.io/sroi/">Strawberry Robotic Operation Interface: An Open-Source Device for Collecting Dexterous Manipulation Data in Robotic Strawberry Farming</a> <span class="muted">(<a href="https://arxiv.org/abs/2501.16717">paper</a>)</span></span>
+    <span class="date">2025</span>
+</div>
+<div class="list-row">
+    <a href="https://doi.org/10.1016/j.patcog.2025.112799">Learn from Foundation Model: Fruit Detection Model without Manual Annotation</a>
+    <span class="date">2025</span>
+</div>
+<div class="list-row">
+    <a href="https://doi.org/10.1002/rob.22374">Optimization-based Motion Planning for Autonomous Agricultural Vehicles Turning in Constrained Headlands</a>
+    <span class="date">2024</span>
+</div>
+<div class="list-row">
+    <a href="https://doi.org/10.1016/j.compag.2024.108735">A Robotic Orchard Platform Increases Harvest Throughput by Controlling Worker Vertical Positioning and Platform Speed</a>
+    <span class="date">2024</span>
+</div>
+<div class="list-row">
+    <a href="https://doi.org/10.1002/rob.22072">Row-sensing Templates: A Generic 3D Sensor-based Approach to Robot Localization with Respect to Orchard Row Centerlines</a>
+    <span class="date">2022</span>
+</div>
+<div class="list-row">
+    <a href="https://openaccess.thecvf.com/content/ICCV2021W/CVPPA/html/Fei_Enlisting_3D_Crop_Models_and_GANs_for_More_Data_Efficient_ICCVW_2021_paper.html">Enlisting 3D Crop Models and GANs for More Data Efficient and Generalizable Fruit Detection</a>
+    <span class="date">2021</span>
+</div>
+<div class="list-row">
+    <a href="https://doi.org/10.13031/trans.13981">Estimation of Worker Fruit-picking Rates with an Instrumented Picking Bag</a>
+    <span class="date">2020</span>
+</div>
