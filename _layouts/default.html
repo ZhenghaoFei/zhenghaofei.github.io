@@ -45,6 +45,43 @@
         .item .when { color: #777; font-size: 0.9rem; }
         .list-row { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.55rem; }
         .list-row .date { color: #777; font-size: 0.9rem; white-space: nowrap; }
+        img { max-width: 100%; height: auto; display: block; margin: 1.2rem auto 0.4rem auto; }
+        h3 { font-size: 1.1rem; margin: 2rem 0 0.6rem 0; }
+        blockquote {
+            margin: 1.2rem 0;
+            padding: 0.2rem 1.2rem;
+            border-left: 3px solid #d0d0d0;
+            color: #555;
+            background: #fafafa;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
+            display: block;
+            overflow-x: auto;
+        }
+        th, td { border: 1px solid #e0e0e0; padding: 0.4rem 0.7rem; }
+        th { background: #f6f6f6; text-align: left; }
+        tr:nth-child(even) td { background: #fafafa; }
+        code {
+            background: #f2f2f2;
+            padding: 0.1em 0.35em;
+            border-radius: 4px;
+            font-size: 0.88em;
+        }
+        pre {
+            background: #f6f8fa;
+            border: 1px solid #e5e5e5;
+            border-radius: 6px;
+            padding: 0.9rem 1rem;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.5;
+        }
+        pre code { background: none; padding: 0; font-size: inherit; }
+        hr { border: none; border-top: 1px solid #e5e5e5; margin: 2.5rem 0; }
         @media (max-width: 560px) {
             body { padding: 2.5rem 0; }
         }
