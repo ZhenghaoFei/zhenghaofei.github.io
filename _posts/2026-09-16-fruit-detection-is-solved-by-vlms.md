@@ -287,27 +287,31 @@ Re-requesting the affected frames under identical settings immediately recovered
 
 A public benchmark cannot prove out-of-distribution performance: StrawDI has been downloadable for years, so these images may be in pretraining data. As a check beyond the public benchmark, we ran the identical nine-field census prompt — byte-for-byte the same prompt and schema — on **two private, deliberately chaotic scenes from our own collection**: **private-1**, a dense hanging truss from a greenhouse row, and **private-2**, a hand-held close-up of an overlapping cluster. Neither image has been publicly released, and neither has any ground truth, so this is qualitative: what does the model's inventory look like when the scene is messy and the data cannot have been memorized as a benchmark?
 
-Eight configurations ran both scenes: GPT-6 Astra (low effort), the six **GPT-5.6** configurations (the `luna` and `sol` variants, each at low, medium, and high reasoning effort), and GLM (maximum effort) as a non-GPT reference.
+Twelve configurations ran both scenes: GPT-6 Astra (low effort), the six **GPT-5.6** configurations (the `luna` and `sol` variants, each at low, medium, and high reasoning effort), four **GPT-6** `luna`/`sol` configurations (each at low and high effort), and GLM (maximum effort) as a non-GPT reference.
 
 | Configuration | `private-1` | `private-2` |
 | --- | ---: | ---: |
 | **GPT-6 Astra (low)** | **23** | **21** |
+| GPT-6 luna low / high | 20 / 19 | 14 / 16 |
+| GPT-6 sol low / high | 22 / 21 | 18 / 17 |
 | GPT-5.6 luna low / medium / high | 18 / 21 / 19 | 14 / 16 / 17 |
 | GPT-5.6 sol low / medium / high | 17 / 21 / 21 | 18 / 17 / 18 |
 | GLM-5.3-flash | 16 | 14 |
 
 *Fruit reported per scene; counts alone say nothing about correctness — the grids below are the evidence.*
 
-The visual verdict is unambiguous, and it indicates two things. First, **GPT-6 Astra is uniquely good**: on both scenes its detections are essentially perfect — almost every fruit I can find by eye is outlined (there are actually some missing but are very small ones hard to tell if they are fruits or not), the outlines closely follow the visible surface, and nothing is invented. Second, **the GPT-5.6 family is fairly flat**: from `luna` medium all the way to `sol` high (`luna` low is apparently the weakest), the five runs produce very similar results — similar counts, similar outlines, and similar misses — so increasing reasoning effort or switching variants does not close the gap to Astra. Whatever changed between the 5.6 and 6 generations appears to matter more here than anything the reasoning-effort setting can provide.
+The visual verdict is unambiguous, and it indicates two things. First, **GPT-6 Astra is uniquely good**: on both scenes its detections are essentially perfect — almost every fruit I can find by eye is outlined (there are actually some missing but are very small ones hard to tell if they are fruits or not), the outlines closely follow the visible surface, and nothing is invented. Second, **the GPT-5.6 family is fairly flat**: from `luna` medium all the way to `sol` high (`luna` low is apparently the weakest), the five runs produce very similar results — similar counts, similar outlines, and similar misses — so increasing reasoning effort or switching variants does not close the gap to Astra. The four GPT-6 `luna`/`sol` runs land in exactly the same count range as the GPT-5.6 family (19–22 on `private-1`, 14–18 on `private-2`) — so the step up is specific to Astra rather than a property of the 6 generation as a whole, and neither reasoning effort nor the variant switch closes the gap.
+
+**What the `luna` and `sol` runs cost.** Each single-scene call used ≈27k input tokens (≈3.3–3.7k of them cached) and 1.8–4.1k output tokens, and took 57–108 s. The runs record no provider-side cost; at the announced GPT-6 `luna`/`sol` rates ([OpenAI, September 22, 2026](https://openai.com/index/introducing-gpt-6-sol-and-luna/) — `luna`: $0.10 / $0.01 / $0.50 per million input / cached-input / output tokens; `sol`: $2 / $0.20 / $10), that is **≈$0.007–0.008 per scene pair for `luna` and ≈$0.15–0.17 for `sol`** — orders of magnitude below the Astra calls discussed in the cost section below.
 
 
-![All eight configurations on private-1, the greenhouse-truss scene.](/assets/fruit_detection_is_solved_by_vlms/chaos_private-1.jpg)
+![All twelve configurations on private-1, the greenhouse-truss scene.](/assets/fruit_detection_is_solved_by_vlms/chaos_private-1.jpg)
 
-*Figure 7. Scene `private-1` (dense hanging truss). Each polygon is coloured by the model's own reported redness (green → red). GPT-6 Astra (top panel) resolves the cluster fruit-by-fruit; the six GPT-5.6 panels are nearly interchangeable, and GLM undercounts. Qualitative — no ground truth exists on this scene.*
+*Figure 7. Scene `private-1` (dense hanging truss). Each polygon is coloured by the model's own reported redness (green → red). GPT-6 Astra (top-left panel) resolves the cluster fruit-by-fruit; the six GPT-5.6 panels and the four GPT-6 `luna`/`sol` panels are nearly interchangeable, and GLM undercounts. Qualitative — no ground truth exists on this scene.*
 
-![All eight configurations on private-2, the hand-held scene.](/assets/fruit_detection_is_solved_by_vlms/chaos_private-2.jpg)
+![All twelve configurations on private-2, the hand-held scene.](/assets/fruit_detection_is_solved_by_vlms/chaos_private-2.jpg)
 
-*Figure 8. Scene `private-2` (hand-held close-up, heavy overlap). Same pattern: GPT-6 Astra's inventory is complete and cleanly separated; the GPT-5.6 panels again look alike from luna-low to sol-high.*
+*Figure 8. Scene `private-2` (hand-held close-up, heavy overlap). Same pattern: GPT-6 Astra's inventory is complete and cleanly separated; the GPT-5.6 and GPT-6 `luna`/`sol` panels again look alike from luna-low to sol-high.*
 
 ### Full nine-field output on the private scenes
 
