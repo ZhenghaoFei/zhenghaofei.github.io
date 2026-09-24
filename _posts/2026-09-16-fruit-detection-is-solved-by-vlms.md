@@ -3,7 +3,7 @@ title: "Is Visual Fruit Detection Solved by Vision-Language Models, and What Rem
 date: 2026-09-16
 ---
 
-> **TL;DR** — I tested whether frontier vision-language models can perform fruit detection directly from raw images and a written prompt, without task-specific training. On all 200 images of the StrawDI test set, GPT-6 Astra achieved 60.1 segmentation mAP and 86.0 mean instance IoU — exceeding the dataset’s fully supervised Mask R-CNN benchmark in mAP (45.36) and nearly matching its IoU (87.7), despite using no StrawDI training data. The other VLMs we tested were substantially behind, suggesting that this is still a frontier-model capability rather than a general property of VLMs. Astra also showed surprisingly strong performance on small fruit and transferred qualitatively to difficult private scenes, while the same prompt could return masks together with attributes such as redness, occlusion, and graspability. Important limitations remain, especially very small fruit, latency, cost, local deployment, and dependence on a small number of frontier models. Fruit detection is not universally solved, but the starting point has changed dramatically: a strong VLM is now worth testing before collecting and labeling a new task-specific dataset.
+> **TL;DR** — I tested whether frontier vision-language models can perform fruit detection directly from raw images and a written prompt, without task-specific training. On all 200 images of the StrawDI test set, GPT-6 Astra achieved 60.1 segmentation mAP and 86.0 mean instance IoU — exceeding the dataset’s fully supervised Mask R-CNN benchmark in mAP (45.36) and nearly matching its IoU (87.7), despite using no StrawDI training data. The other VLMs we tested were substantially behind, and GPT-6 luna — the same generation's cheaper tier — closes only part of the gap (40.0 mAP), suggesting that this is still a frontier-model capability rather than a general property of VLMs. Astra also showed surprisingly strong performance on small fruit and transferred qualitatively to difficult private scenes, while the same prompt could return masks together with attributes such as redness, occlusion, and graspability. Important limitations remain, especially very small fruit, latency, cost, local deployment, and dependence on a small number of frontier models. Fruit detection is not universally solved, but the starting point has changed dramatically: a strong VLM is now worth testing before collecting and labeling a new task-specific dataset.
 
 Detecting fruit in images has been a long-standing challenge in agricultural computer vision. It is hard not because we cannot achieve high accuracy on a specific dataset, but because real-world scenarios are highly variable. No two orchards look the same, and the same type of fruit can look very different depending on the environment (weather, lighting, occlusion, etc.) and the fruit itself (variety and horticultural practices). Most deep learning-based fruit detection methods rely on large amounts of labelled data to cover the variability (distribution) in the real world. Detection in out-of-distribution (OOD) scenarios often fails. Unfortunately, due to the inherent variability of real-world conditions and data privacy issues, fruit detection always has to deal with OOD scenarios. This means that one often cannot deploy a model trained in one orchard directly to another orchard without fine-tuning it with new data.
 
@@ -46,6 +46,8 @@ The following models with corresponding reasoning effort (thinking) were evaluat
 | Kimi K3 | High |
 | GLM-5.3-Flash | Max |
 | DeepSeek V4.1-Flash | High |
+| GPT-6 luna | Low |
+| GPT-6 luna | High |
 | GPT-6 Astra | Low |
 
 
@@ -108,27 +110,43 @@ Before the numbers, here is what the output actually looks like. GPT-6 Astra's v
 | Kimi K3 | 77.7% | 64.8% | 70.7% | 39.9% | 62.0% | 30.9% | 0.75 (median 0.77) | 1.04 |
 | GLM | 75.0% | 61.0% | 67.3% | 28.4% | 58.2% | 24.3% | 0.72 (median 0.73) | 1.12 |
 | DeepSeek | 73.1% | 59.9% | 65.9% | 26.2% | 55.8% | 22.6% | 0.71 (median 0.72) | 1.11 |
+| GPT-6 luna (low) | 86.1% | 69.8% | 77.1% | 53.2% | 68.4% | 38.5% | 0.79 (median 0.81) | 1.34 |
+| GPT-6 luna (high) | 88.5% | 70.9% | 78.7% | 53.8% | 69.8% | 40.0% | 0.79 (median 0.81) | 1.25 |
 | **GPT-6 Astra** | **91.9%** | **83.8%** | **87.6%** | **75.1%** | **83.5%** | **60.1%** | **0.86** (median 0.89) | **0.75** |
 
 *All metrics at mask IoU; 200/200 images scored for every model.*
 
-GPT-6 Astra matches **948 of 1,132 labelled fruits** (84 unmatched predictions, 184 missed labels), exceeding the runner-up Kimi K3's F1 by **17.0 percentage points**. All four configurations returned valid responses for every test image, so no common-subset correction is needed.
+GPT-6 Astra matches **948 of 1,132 labelled fruits** (84 unmatched predictions, 184 missed labels), exceeding the runner-up GPT-6 luna (high)'s F1 by **8.9 percentage points**. All six configurations returned valid responses for every test image, so no common-subset correction is needed.
 
-![Segmentation precision, recall, F1, and F1 across IoU thresholds for the four configurations.](/assets/fruit_detection_is_solved_by_vlms/seg_scores.png)
+![Segmentation precision, recall, F1, and F1 across IoU thresholds for the six configurations.](/assets/fruit_detection_is_solved_by_vlms/seg_scores.png)
 
 *Figure 2. Left: precision, recall, and F1 at mask IoU ≥ 0.50. Right: F1 as the required IoU tightens — GPT's advantage grows with the localization requirement.*
 
-The same scene makes the gap visible without any numbers — here all four models answer the identical prompt on one crowded test image:
+The same scene makes the gap visible without any numbers — here all six models answer the identical prompt on one crowded test image:
 
-![The four models' segmentation output on the same crowded strawberry scene, StrawDI test image 2532.](/assets/fruit_detection_is_solved_by_vlms/same_scene_seg.jpg)
+![The six models' segmentation output on the same crowded strawberry scene, StrawDI test image 2532.](/assets/fruit_detection_is_solved_by_vlms/same_scene_seg.jpg)
 
-*Figure 3. StrawDI test image 2532, twenty labelled instances. GPT-6 Astra finds fifteen with one unmatched prediction; the other three models find five to eight and over-segment the cluster. Illustrative example, not a representative sample.*
+*Figure 3. StrawDI test image 2532, twenty labelled instances. GPT-6 Astra finds fifteen with one unmatched prediction; the other five models find five to ten and over-segment the cluster. Illustrative example, not a representative sample.*
 
 ### Full nine-field output on this image
 
 The figure shows only the geometry. Here is each model's complete output on this same image, rendered as an inventory — one card per reported fruit, with its visible-surface polygon, redness and occlusion, calyx/stem/graspable flags, and confidence (boxes and free-text descriptions omitted for clarity; the full JSON follows below):
 
 ![GPT-6 Astra's nine-field output on StrawDI test image 2532, one card per reported fruit.](/assets/fruit_detection_is_solved_by_vlms/demo_2532_gpt.jpg)
+
+<details markdown="1">
+<summary><strong>GPT-6 luna (high)</strong> — 13 fruit reported (10 matched, 3 unmatched)</summary>
+
+![GPT-6 luna (high)'s nine-field output on StrawDI test image 2532.](/assets/fruit_detection_is_solved_by_vlms/demo_2532_luna_high.jpg)
+
+</details>
+
+<details markdown="1">
+<summary><strong>GPT-6 luna (low)</strong> — 14 fruit reported (8 matched, 6 unmatched)</summary>
+
+![GPT-6 luna (low)'s nine-field output on StrawDI test image 2532.](/assets/fruit_detection_is_solved_by_vlms/demo_2532_luna_low.jpg)
+
+</details>
 
 <details markdown="1">
 <summary><strong>Kimi K3</strong> — 13 fruit reported (6 matched, 7 unmatched)</summary>
@@ -151,7 +169,7 @@ The figure shows only the geometry. Here is each model's complete output on this
 
 </details>
 
-*The four models' complete responses on StrawDI test image 2532, one card per reported fruit (largest first, as the prompt requests). Cards are rendered from the raw model outputs below, unedited.*
+*The six models' complete responses on StrawDI test image 2532, one card per reported fruit (largest first, as the prompt requests). Cards are rendered from the raw model outputs below, unedited.*
 
 And the same responses verbatim, exactly as returned by each model:
 
@@ -175,6 +193,51 @@ And the same responses verbatim, exactly as returned by each model:
 {"bbox": [396.0, 440.0, 435.0, 486.0], "polygon": [[410, 449], [421, 444], [428, 449], [432, 460], [430, 474], [422, 483], [412, 484], [403, 477], [399, 465], [402, 457]], "redness_pct": 0, "occlusion_pct": 26, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 99, "description": "Small green fruit peeking from behind the bottom tip of the long red strawberry. Its lower body is visible, while the neighboring fruit hides its upper-left portion."}
 {"bbox": [846.0, 235.0, 890.0, 272.0], "polygon": [[858, 240], [869, 236], [880, 240], [886, 248], [888, 258], [881, 266], [869, 269], [859, 266], [857, 257], [850, 252]], "redness_pct": 0, "occlusion_pct": 15, "calyx_visible": true, "peduncle_visible": true, "graspable": true, "confidence_pct": 100, "description": "Small green fruit on a long stem at the far right, level with the central cluster's shoulders. Sepals overlap its left edge, but most of the rounded seeded body is visible."}
 {"bbox": [844.0, 137.0, 872.0, 165.0], "polygon": [[852, 140], [860, 137], [867, 142], [870, 149], [867, 157], [860, 163], [852, 160], [847, 153], [846, 146]], "redness_pct": 0, "occlusion_pct": 20, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 97, "description": "Tiny dark-green developing strawberry above the other far-right green fruit. Its small body sits within pointed sepals at the end of a curved stalk."}
+```
+
+</details>
+
+<details markdown="1">
+<summary><strong>GPT-6 luna (low)</strong> — 14 fruit reported (8 matched, 6 unmatched)</summary>
+
+```json
+{"bbox": [391.0, 244.0, 466.0, 375.0], "polygon": [[430, 248], [446, 250], [458, 259], [464, 275], [465, 296], [459, 316], [453, 339], [444, 359], [432, 371], [419, 374], [406, 365], [399, 350], [394, 333], [393, 313], [397, 291], [403, 273], [413, 258], [422, 251]], "redness_pct": 47, "occlusion_pct": 7, "calyx_visible": true, "peduncle_visible": false, "graspable": true, "confidence_pct": 99, "description": "Large hanging fruit near the center-left, pale cream across the top and orange-red toward the bottom. A few green sepals overlap its upper edge; it is otherwise clearly exposed."}
+{"bbox": [339.0, 350.0, 424.0, 465.0], "polygon": [[365, 351], [383, 352], [399, 361], [410, 378], [418, 399], [423, 423], [420, 444], [408, 459], [394, 464], [378, 460], [363, 446], [351, 427], [343, 407], [340, 386], [346, 369], [355, 357]], "redness_pct": 56, "occlusion_pct": 9, "calyx_visible": true, "peduncle_visible": false, "graspable": true, "confidence_pct": 99, "description": "Elongated fruit hanging below the large central-left berry, cream-yellow at the top and deepening to red near its tip. Leaves and the neighboring fruit partly cover its upper portion."}
+{"bbox": [515.0, 251.0, 581.0, 307.0], "polygon": [[520, 258], [532, 253], [545, 252], [557, 258], [567, 268], [579, 281], [581, 291], [574, 300], [560, 305], [545, 307], [532, 302], [521, 292], [516, 279]], "redness_pct": 42, "occlusion_pct": 18, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 98, "description": "Small round fruit near the center, mostly orange with a pale yellow-green patch across its upper-left side. Green sepals from its calyx overlap the top and left edges, and it is pressed close to adjacent fruit."}
+{"bbox": [586.0, 255.0, 660.0, 332.0], "polygon": [[600, 259], [617, 256], [633, 261], [645, 273], [654, 287], [659, 301], [655, 314], [645, 324], [630, 330], [614, 331], [601, 326], [591, 315], [587, 300], [589, 282]], "redness_pct": 3, "occlusion_pct": 17, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 99, "description": "Pale green, rounded fruit at the center-right, with a slightly lighter yellow-green face. Its calyx and nearby leaves obscure parts of the upper and left edges; it touches the neighboring orange fruit."}
+{"bbox": [652.0, 143.0, 758.0, 227.0], "polygon": [[689, 146], [708, 144], [727, 150], [742, 162], [752, 177], [757, 192], [752, 204], [739, 214], [721, 221], [702, 226], [684, 223], [669, 215], [661, 203], [659, 187], [666, 170], [676, 157]], "redness_pct": 63, "occlusion_pct": 3, "calyx_visible": true, "peduncle_visible": false, "graspable": true, "confidence_pct": 99, "description": "Distinct mid-sized fruit hanging in the upper-right area, pale yellow at the top fading through orange to red along the lower-right side. Its green calyx is visible behind the upper-left edge, with little obstruction to the fruit body."}
+{"bbox": [645.0, 339.0, 701.0, 383.0], "polygon": [[661, 341], [673, 340], [684, 345], [694, 354], [700, 365], [697, 375], [687, 381], [675, 383], [664, 378], [655, 369], [648, 359], [647, 350]], "redness_pct": 2, "occlusion_pct": 24, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 97, "description": "Small pale green fruit below the central cluster, partly crossed by its leafy calyx and nearby stems. Most of its body is visible, though the foliage makes it awkward to approach."}
+{"bbox": [833.0, 236.0, 887.0, 275.0], "polygon": [[849, 238], [861, 237], [873, 241], [883, 250], [886, 260], [880, 269], [869, 274], [857, 273], [846, 267], [840, 257], [843, 247]], "redness_pct": 1, "occlusion_pct": 17, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 98, "description": "Small green fruit on the far right, with a bumpy rounded body and a leafy calyx draped over its top. A thin stem and surrounding foliage are close by."}
+{"bbox": [839.0, 131.0, 872.0, 164.0], "polygon": [[850, 132], [860, 132], [868, 138], [871, 147], [867, 155], [858, 162], [849, 161], [843, 154], [842, 145], [845, 137]], "redness_pct": 1, "occlusion_pct": 26, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 96, "description": "Tiny green fruit near the upper-right, mostly visible beneath a leafy calyx, with a narrow stem extending away from it. It is small and tucked among the plant's branching stems."}
+{"bbox": [397.0, 448.0, 435.0, 487.0], "polygon": [[410, 450], [421, 449], [429, 455], [434, 465], [432, 476], [424, 485], [414, 487], [405, 482], [400, 473], [400, 462]], "redness_pct": 0, "occlusion_pct": 38, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 91, "description": "Small green fruit peeking out below the elongated red-and-cream berry. Leaves and the larger fruit hide much of it, leaving a green lower portion visible."}
+{"bbox": [155.0, 76.0, 224.0, 113.0], "polygon": [[170, 78], [184, 76], [200, 80], [213, 88], [220, 98], [222, 106], [216, 111], [203, 113], [188, 110], [174, 104], [162, 96], [158, 87]], "redness_pct": 28, "occlusion_pct": 18, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 96, "description": "Partly hidden fruit near the upper-left, showing a cream-to-orange body with orange coloration concentrated on its right side. Green leaves and stems cover portions of it, and its calyx is visible around the top."}
+{"bbox": [140.0, 44.0, 253.0, 103.0], "polygon": [[155, 48], [175, 46], [199, 48], [221, 53], [239, 61], [249, 72], [250, 82], [241, 91], [224, 98], [203, 102], [182, 99], [163, 91], [151, 79], [147, 66]], "redness_pct": 0, "occlusion_pct": 48, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 96, "description": "Broad, pale green bumpy fruit along the upper-left edge, partly hidden behind leaves and stems. Only much of its lower and right side is clear, with its leafy calyx blending into the surrounding foliage."}
+{"bbox": [0.0, 132.0, 119.0, 210.0], "polygon": [[37, 151], [52, 143], [71, 140], [90, 146], [107, 158], [116, 171], [115, 184], [105, 195], [88, 204], [68, 208], [49, 203], [34, 194], [25, 181], [26, 167]], "redness_pct": 0, "occlusion_pct": 28, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 98, "description": "Large pale green fruit on the left side, partly masked by leaves around its left and upper edges. Its bumpy light-green body is mostly visible beneath the foliage."}
+{"bbox": [138.0, 119.0, 190.0, 164.0], "polygon": [[152, 122], [164, 120], [177, 124], [186, 133], [189, 144], [185, 154], [176, 161], [164, 164], [152, 159], [144, 150], [141, 139], [145, 129]], "redness_pct": 0, "occlusion_pct": 52, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 90, "description": "Small pale green fruit near the upper-left cluster, mostly hidden behind white petals and green sepals. A limited area of its rounded, bumpy body shows through the foliage."}
+{"bbox": [0.0, 353.0, 31.0, 389.0], "polygon": [[0, 357], [11, 353], [21, 356], [29, 364], [31, 373], [27, 382], [18, 388], [8, 387], [1, 381], [0, 373]], "redness_pct": 0, "occlusion_pct": 66, "calyx_visible": true, "peduncle_visible": false, "graspable": false, "confidence_pct": 83, "description": "A small pale green fruit is clipped by the left edge below the main left cluster. Most of it is outside the frame or hidden by the flower and leaves, with only a partial body visible."}
+```
+
+</details>
+
+
+
+<details markdown="1">
+<summary><strong>GPT-6 luna (high)</strong> — 13 fruit reported (10 matched, 3 unmatched)</summary>
+
+```json
+{"bbox": [397.0, 245.0, 478.0, 375.0], "polygon": [[435, 248], [456, 251], [469, 266], [477, 288], [474, 317], [464, 345], [447, 366], [429, 374], [411, 366], [400, 346], [397, 325], [402, 299], [410, 273], [421, 256]], "redness_pct": 52, "occlusion_pct": 18, "calyx_visible": true, "peduncle_visible": true, "graspable": true, "confidence_pct": 99, "description": "Large hanging fruit near the center-left, pale cream at the top with a broad orange-red flush over the lower half. Leaves and the calyx overlap parts of its upper edge."}
+{"bbox": [338.0, 347.0, 425.0, 465.0], "polygon": [[370, 350], [390, 350], [408, 363], [420, 385], [424, 414], [417, 441], [400, 459], [386, 464], [367, 455], [351, 435], [340, 410], [339, 387], [350, 367]], "redness_pct": 64, "occlusion_pct": 17, "calyx_visible": true, "peduncle_visible": true, "graspable": true, "confidence_pct": 99, "description": "Large lower-center-left fruit, cream near the stem end and strongly red over most of its lower half. Leaves and a small green berry partly crowd its upper-right side."}
+{"bbox": [658.0, 144.0, 758.0, 227.0], "polygon": [[690, 146], [710, 149], [732, 159], [748, 173], [757, 190], [755, 207], [742, 219], [722, 226], [698, 221], [679, 211], [663, 197], [658, 182], [668, 165]], "redness_pct": 48, "occlusion_pct": 8, "calyx_visible": true, "peduncle_visible": true, "graspable": true, "confidence_pct": 99, "description": "Prominent fruit at upper right, mostly pale cream with a red-orange blush concentrated on its right and lower side. Its leafy calyx is visible at the left end, with a few leaves near the outline."}
+{"bbox": [583.0, 251.0, 657.0, 332.0], "polygon": [[611, 254], [630, 255], [645, 267], [655, 285], [656, 303], [646, 320], [629, 330], [609, 328], [596, 316], [587, 299], [585, 280], [596, 264]], "redness_pct": 2, "occlusion_pct": 15, "calyx_visible": true, "peduncle_visible": true, "graspable": true, "confidence_pct": 99, "description": "Medium-sized pale green, dotted fruit in the central cluster. Leaves and the large calyx overlap its upper and left edges."}
+{"bbox": [518.0, 251.0, 581.0, 307.0], "polygon": [[538, 253], [554, 258], [570, 269], [579, 282], [579, 294], [569, 303], [553, 306], [538, 301], [527, 292], [519, 280], [523, 268]], "redness_pct": 44, "occlusion_pct": 49, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 95, "description": "Partly hidden fruit just right of the large central berry, with an orange-red lower-right area and a lighter top. A large calyx and neighboring fruit obscure much of it."}
+{"bbox": [651.0, 335.0, 700.0, 383.0], "polygon": [[671, 339], [682, 343], [691, 353], [698, 365], [697, 375], [688, 381], [678, 379], [667, 371], [657, 362], [653, 351], [660, 343]], "redness_pct": 1, "occlusion_pct": 43, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 97, "description": "Small green fruit below the upper-right berry, partly screened by its leaves and nearby stems. It hangs at the edge of the central cluster."}
+{"bbox": [172.0, 44.0, 248.0, 112.0], "polygon": [[191, 46], [214, 48], [234, 54], [246, 66], [245, 82], [235, 96], [218, 107], [198, 110], [184, 102], [177, 89], [174, 71], [180, 56]], "redness_pct": 17, "occlusion_pct": 46, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 91, "description": "Partly concealed fruit in the upper-left foliage, pale yellow-green with an orange patch visible on its lower-right side. Leaves hide much of its body."}
+{"bbox": [704.0, 43.0, 768.0, 112.0], "polygon": [[728, 45], [746, 49], [759, 60], [766, 75], [763, 89], [751, 101], [735, 109], [720, 105], [710, 95], [706, 81], [709, 65], [718, 52]], "redness_pct": 0, "occlusion_pct": 54, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 91, "description": "Pale green fruit high in the image, mostly screened by the canopy; its dotted surface shows through between leaves. The body is largely hidden behind foliage."}
+{"bbox": [46.0, 140.0, 121.0, 197.0], "polygon": [[75, 142], [91, 145], [105, 154], [115, 168], [119, 181], [111, 192], [97, 197], [80, 193], [65, 185], [54, 174], [49, 161], [57, 150]], "redness_pct": 0, "occlusion_pct": 47, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 94, "description": "Green fruit at the left among flowers and leaves, with only part of its body visible behind the foliage. Its calyx and surrounding leaves obscure much of the outline."}
+{"bbox": [250.0, 53.0, 301.0, 105.0], "polygon": [[269, 55], [282, 58], [294, 67], [300, 78], [298, 91], [289, 100], [276, 104], [263, 99], [254, 89], [251, 76], [257, 64]], "redness_pct": 0, "occlusion_pct": 72, "calyx_visible": false, "peduncle_visible": true, "graspable": false, "confidence_pct": 78, "description": "Small pale green, dotted fruit partly tucked beneath leaves in the upper-left canopy, immediately right of the orange-patched fruit. Most of its body is obscured."}
+{"bbox": [835.0, 235.0, 888.0, 276.0], "polygon": [[854, 237], [865, 241], [875, 250], [884, 260], [885, 267], [876, 273], [865, 275], [853, 270], [843, 262], [839, 252], [845, 243]], "redness_pct": 0, "occlusion_pct": 26, "calyx_visible": true, "peduncle_visible": true, "graspable": true, "confidence_pct": 96, "description": "Small green fruit hanging at the right side of the image, partly bordered by leaves. Its pale dotted surface is visible beneath the calyx."}
+{"bbox": [837.0, 130.0, 873.0, 166.0], "polygon": [[851, 132], [860, 134], [868, 141], [872, 150], [870, 159], [863, 164], [854, 165], [845, 160], [840, 153], [843, 144]], "redness_pct": 0, "occlusion_pct": 38, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 93, "description": "Tiny green fruit near the upper-right side, partly hidden by a leaf and its calyx. Only a small portion of its body is exposed."}
+{"bbox": [400.0, 450.0, 435.0, 486.0], "polygon": [[414, 452], [424, 454], [431, 461], [434, 470], [431, 479], [424, 484], [415, 485], [407, 480], [402, 472], [404, 462]], "redness_pct": 0, "occlusion_pct": 42, "calyx_visible": true, "peduncle_visible": true, "graspable": false, "confidence_pct": 93, "description": "Small green fruit peeking out beneath the large red-and-cream fruit. Leaves and the larger fruit hide much of it."}
 ```
 
 </details>
@@ -252,20 +315,22 @@ The StrawDI paper's benchmark is exactly this task on exactly this split: Mask R
 | --- | --- | --- | ---: | ---: |
 | Mask R-CNN (original paper) | 2,800 StrawDI images | test (200 images) | 45.36 | 87.70 |
 | Kimi K3, zero-shot | none | test (200 images) | 30.9 | 74.9 |
+| GPT-6 luna (low), zero-shot | none | test (200 images) | 38.5 | 78.6 |
+| GPT-6 luna (high), zero-shot | none | test (200 images) | 40.0 | 78.7 |
 | **GPT-6 Astra, zero-shot** | **none** | **test (200 images)** | **60.1** | **86.0** |
 | GPT-6 Astra, zero-shot | none | val (100 images) | 61.3 | 86.9 |
 
 *The paper's numbers are literature reference points, not reruns: the AP protocol differs (all-points interpolation here) and our polygons are limited to 32 vertices. But the task, the output representation, the ground truth, and the test split are the same. The validation row comes from an earlier 100-image batch of the same configuration, included to show the result replicates across splits.*
 
-**A general-purpose VLM with no task-specific training exceeds the fully supervised Mask R-CNN's segmentation mAP on its own test split (60.1 vs 45.36) and lands within two points of its mean instance IoU (86.0 vs 87.7)** — With the validation-split run (61.3 / 86.9) showing the same profile, this is the strongest evidence presented in this article. The other VLMs are still far behind (best non-GPT 6 Astra: Kimi K3 at mAP 30.9 and mean IoU 74.9), suggesting that this level of performance is, for now, a frontier-model capability rather than a general property of VLMs. At the same time, we look forward to seeing whether the next generation of VLMs from other providers, including open-source models, can approach or match this level of performance.
+**A general-purpose VLM with no task-specific training exceeds the fully supervised Mask R-CNN's segmentation mAP on its own test split (60.1 vs 45.36) and lands within two points of its mean instance IoU (86.0 vs 87.7)** — With the validation-split run (61.3 / 86.9) showing the same profile, this is the strongest evidence presented in this article. The other VLMs are still far behind, and even GPT-6 luna — the cheaper tier of the same generation — tops out at mAP 40.0 and mean IoU 78.7, still below the supervised specialist's mAP: this level of performance remains, for now, an Astra-specific capability rather than a general property of VLMs. At the same time, we look forward to seeing whether the next generation of VLMs from other providers, including open-source models, can approach or match this level of performance.
 
 ### Small fruit remain challenging — but Astra is already much stronger
 
-Small fruit are still the most difficult category, but GPT-6 Astra performs substantially better than the other VLMs. Its size-stratified mask recall is 338/338 for large fruit, 513/542 for medium fruit, and 97/252 for small fruit (38.5%). While the recall on small fruit is clearly lower than on medium and large fruit, it is still striking compared with the other models, which detect only 7–14 of the 252 small instances.
+Small fruit are still the most difficult category, but GPT-6 Astra performs substantially better than the other VLMs. Its size-stratified mask recall is 338/338 for large fruit, 513/542 for medium fruit, and 97/252 for small fruit (38.5%). While the recall on small fruit is clearly lower than on medium and large fruit, it is still striking compared with the other models, which detect only 7–32 of the 252 small instances (the best non-Astra being GPT-6 luna high at 32).
 
 This suggests that GPT-6 Astra has made a significant step forward even on small-object detection, although very small and weakly visible fruit remain one of the clearest failure modes. In other words, small fruit are no longer simply a case where all VLMs fail similarly — Astra shows a substantial capability gap here as well.
 
-![Recall by visible instance size for the four configurations.](/assets/fruit_detection_is_solved_by_vlms/size_recall.png)
+![Recall by visible instance size for the six configurations.](/assets/fruit_detection_is_solved_by_vlms/size_recall.png)
 
 *Figure 4. Recall at mask IoU ≥ 0.50 by visible mask area (small < 1,024 px²; medium 1,024–9,215 px²; large ≥ 9,216 px²). Labels give matched/total instances.*
 
@@ -391,11 +456,11 @@ Even the runner-up models' output shows the flexibility that makes this paradigm
 
 ### Latency and cost are far from a local detector
 
-Recorded mean call time per scheduled image: **76.2 s (Kimi K3), 89.4 s (GLM), 25.5 s (DeepSeek), 48.4 s (GPT)**, including CLI overhead and recorded retries. For scale, Ultralytics reports **1.5–11.3 ms** for YOLO11 on a T4 GPU with TensorRT — different hardware, resolution, and workload, so not a controlled comparison, but the gap is four orders of magnitude. [12]
+Recorded mean call time per scheduled image: **76.2 s (Kimi K3), 89.4 s (GLM), 25.5 s (DeepSeek), 70.9 s (GPT-6 luna low), 62.1 s (GPT-6 luna high), 48.4 s (GPT-6 Astra)**, including CLI overhead and recorded retries. For scale, Ultralytics reports **1.5–11.3 ms** for YOLO11 on a T4 GPU with TensorRT — different hardware, resolution, and workload, so not a controlled comparison, but the gap is four orders of magnitude. [12]
 
-GPT averaged **15,336 input and 944 output tokens per scheduled image**. At OpenAI's listed standard rates — $10 / $1 / $50 per million input / cached-input / output tokens, checked September 15, 2026 — that is **≈$0.20 per image** uncached or **≈$0.12** with recorded cache reads ($40.1 vs $23.9 per 200 images); GLM's recorded batch cost was $22.86 per 200 images at its provider's rates. These are token-based estimates, not invoices. [13] For an occasional scene audit this may be acceptable; for continuous video, the first things I would test are request frequency, output verbosity, and distillation into a local model.
+GPT averaged **15,336 input and 944 output tokens per scheduled image**. At OpenAI's listed standard rates — $10 / $1 / $50 per million input / cached-input / output tokens, checked September 15, 2026 — that is **≈$0.20 per image** uncached or **≈$0.12** with recorded cache reads ($40.1 vs $23.9 per 200 images); GLM's recorded batch cost was $22.86 per 200 images at its provider's rates. GPT-6 luna averaged ≈21,200 input tokens per image — over 75% of them cache reads — and 730–1,380 output tokens; at [luna's listed rates](https://openai.com/index/introducing-gpt-6-sol-and-luna/) ($0.10 / $0.01 / $0.50 per million input / cached-input / output tokens) that is **≈$0.001 per image** (≈$0.18–0.26 per 200 images) — roughly two orders of magnitude below Astra's cost, which is part of what makes the accuracy gap between the two tiers interesting. These are token-based estimates, not invoices. [13] For an occasional scene audit this may be acceptable; for continuous video, the first things I would test are request frequency, output verbosity, and distillation into a local model.
 
-![Recorded input and output token usage and mean call time for the four configurations.](/assets/fruit_detection_is_solved_by_vlms/tokens_latency.png)
+![Recorded input and output token usage and mean call time for the six configurations.](/assets/fruit_detection_is_solved_by_vlms/tokens_latency.png)
 
 *Figure 9. Means across all 200 scheduled images per model. Output includes reasoning tokens; GLM's input figure reflects its provider's accounting (cached tokens are not reported as input). Token accounting and CLI overhead differ across providers — these are operational measurements of the configurations used. Control calls excluded.*
 
